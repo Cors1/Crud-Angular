@@ -1,0 +1,73 @@
+.infoUsers {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#search {
+    float: right;
+    width: 85%;
+}
+
+#exampleInputText0 {
+    width: 50%;
+}
+
+.info {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#detail img {
+    width: 30%;
+    margin: 0 auto;
+}
+
+#carousel {
+    width: 30%;
+    margin: 0 auto;
+}
+
+#accordion {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#delete {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.todo {
+    padding: 0.8em;
+}
+
+.scroll {
+    height: 100px;
+    overflow-y: scroll;
+    margin-top: 15px;
+    width: 23%;
+}
+
+.tareas li {
+    display: block;
+}
+
+.decoracion {
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background: #005bcc;
+    color: white;
+}
+
+.done-true {
+    text-decoration: line-through;
+     color: grey;
+}
+
+@media (max-width: 600px) {
+    #accordion {
+        width: 100%;
+    }
+}

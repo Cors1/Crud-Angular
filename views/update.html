@@ -1,0 +1,29 @@
+<toaster-container toaster-options="{'position-class': 'toast-top-left'}"></toaster-container>
+<fieldset class="infoUsers">
+  <legend>Update User</legend>
+  <form name="formUpdateUsers">
+    <div class="form-group">
+      <label for="exampleInputText0">User ID</label>
+      <input type="number" class="form-control" id="exampleInputText0" placeholder="User ID" ng-enter="vm.searchUser()" ng-model="vm.rootUpdateObj.id">
+      <br>
+      <button type="button" class="btn btn-primary" ng-click="vm.searchUser()">Search</button>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputText1">Name</label>
+      <input type="text" class="form-control" id="exampleInputText1" placeholder="Your Name" ng-model="vm.rootUpdateObj.name" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputText2">Surname</label>
+      <input type="text" class="form-control" id="exampleInputText2" placeholder="Your Surname" ng-model="vm.rootUpdateObj.surname" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputText3">Age</label>
+      <input type="text" class="form-control" id="exampleInputText3" placeholder="Your Age" ng-model="vm.rootUpdateObj.age" required>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputText4">Email</label>
+      <input type="email" class="form-control" id="exampleInputText4" placeholder="Your Email" ng-model="vm.rootUpdateObj.email" required>
+    </div>
+    <button type="button" class="btn btn-primary" ng-click="vm.updateUser()" ng-disabled="!formUpdateUsers.$valid">Update</button>
+  </form>
+</fieldset>

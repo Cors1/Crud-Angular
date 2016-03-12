@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>CRUD Angular</title>
+		<!-- Css Libraries -->
+		<link rel="stylesheet" href="css/stylesheets.css">
+		<link rel="stylesheet" href="lib/AngularJS-Toaster/toaster.css">
+		<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+		<!-- Angular Libraries -->
+		<script src="lib/angular/angular.js"></script>
+		<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="lib/angular-animate/angular-animate.js"></script>
+		<!-- Jquery Libraries -->
+		<script src="lib/jquery/dist/jquery.js"></script>
+		<!-- Botstrap Libraries -->
+		<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<!-- Toaster -->
+		<script src="lib/AngularJS-Toaster/toaster.js"></script>
+	</head>
+	<body ng-app="crudProject.App">
+		<nav class="navbar navbar-inverse">
+			<a class="navbar-brand" href="#/index">Crud</a>
+			<ul class="nav navbar-nav navbar-left">
+        		<li class="dropdown">
+          			<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Options<span class="caret"></span></a>
+		          	<ul class="dropdown-menu">
+			            <li><a href="#/index">Add User</a></li>
+					   	<li><a href="#/update">Update User</a></li>
+					   	<li><a href="#/delete">Delete User</a></li>
+					   	<li role="separator" class="divider"></li>
+					   	<li>
+					   		<a href="#/search">Search User <span class="badge"><index-View></index-View></span></a>
+					   	</li>
+		          	</ul>
+        		</li>
+      		</ul>
+		</nav>
+		
+		<section>
+			<article ui-view></article>
+		</section>		
+
+		<!-- Angular Module -->
+		<script src="js/app.js"></script>
+		<!-- Project Constants -->
+		<script src="js/Constants/app.constants.js"></script>
+		<!-- Angular Controllers -->
+		<script src="js/Controllers/addPersonController.js"></script>
+		<script src="js/Controllers/updatePersonController.js"></script>
+		<script src="js/Controllers/searchPersonController.js"></script>
+		<script src="js/Controllers/deletePersonController.js"></script>
+		<script src="js/Controllers/detailPersonToDeleteController.js"></script>
+		<script src="js/Controllers/detailPersonController.js"></script>
+		<script src="js/Controllers/modalDeleteController.js"></script>
+		<!-- Angular Services -->
+		<script src="js/Services/addUserService.js"></script>
+		<script src="js/Services/deleteUserService.js"></script>
+		<script src="js/Services/searchUserService.js"></script>
+		<script src="js/Services/updateUserService.js"></script>
+		<script src="js/Services/sharedDataFactory.js"></script>
+		<!-- Angular Directives -->
+		<script src="js/Directives/indexView.js"></script>
+		<script src="js/Directives/ngEnter.js"></script>
+		<script src="js/directives/uploaderModel.js"></script>
+	</body>
+</html>
