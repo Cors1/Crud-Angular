@@ -1,2 +1,2 @@
 # Crud-Angular
-CRUD using AngujarJs, PHP and MySQL technologies.
+CRUD using AngularJs, PHP and MySQL technologies.
