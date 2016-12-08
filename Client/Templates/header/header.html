@@ -1,0 +1,17 @@
+<nav class="navbar navbar-inverse">
+    <a class="navbar-brand" ui-sref="app.create">CRUD</a>
+    <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Options<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a ui-sref="app.create">Add User</a></li>
+                <li><a ui-sref="app.update">Update User</a></li>
+                <li><a ui-sref="app.delete">Delete User</a></li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a ui-sref="app.read">Search User <span class="badge">{{vm.usersCount}}</span></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

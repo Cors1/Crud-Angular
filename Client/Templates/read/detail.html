@@ -1,0 +1,24 @@
+<div class="jumbotron info">
+	<div id="detail">
+		<img src="data:image/jpg;base64, {{vm.user.image}}" alt="Images" class="img-circle img-responsive">
+	</div>
+  	<h2 align="center"><strong>Detail Person</strong></h2>
+	<p align="center">
+		<strong>Id:</strong></strong> {{vm.user.id}}
+	</p>
+	<p align="center">
+		<strong>Name:</strong> {{vm.user.name}}
+	</p>
+	<p align="center">
+		<strong>Surname:</strong> {{vm.user.surname}}
+	</p>
+	<p align="center">
+		<strong>Age:</strong> {{vm.user.age}}
+	</p>
+	<p align="center">
+		<strong>Email:</strong> {{vm.user.email}}
+	</p>
+	<p align="center">
+		<a class="btn btn-primary btn-lg" ui-sref="app.read" role="button">Back</a>
+	</p>
+</div>

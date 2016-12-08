@@ -1,0 +1,74 @@
+<fieldset class="infoUsers">
+
+  <legend>Update User</legend>
+
+  <form name="formUpdateUsers">
+
+    <div class="form-group">
+      <label for="update_user_id">User ID</label>
+      <input type="number" 
+             class="form-control" 
+             id="update_user_id"
+             name="id" 
+             placeholder="User ID" 
+             required
+             ng-model="vm.userModel.Id">
+      <br>
+      <button type="button" 
+              class="btn btn-primary"
+              ng-disabled="!formUpdateUsers.id.$valid" 
+              ng-click="vm.GetUserInfoById()">
+              Search 
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label for="update_user_name">Name</label>
+      <input type="text" 
+             class="form-control" 
+             id="update_user_name" 
+             name="name" 
+             placeholder="Your Name" 
+             ng-model="vm.userModel.Name" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="update_user_surname">Surname</label>
+      <input type="text" 
+             class="form-control" 
+             id="update_user_surname" 
+             name="surname" 
+             placeholder="Your Surname" 
+             ng-model="vm.userModel.Surname" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="update_user_age">Age</label>
+      <input type="number" 
+             class="form-control" 
+             id="update_user_age" 
+             name="age" 
+             placeholder="Your Age" 
+             ng-model="vm.userModel.Age" 
+             required>
+    </div>
+
+    <div class="form-group">
+      <label for="update_user_email">Email</label>
+      <input type="email" 
+             class="form-control" 
+             id="update_user_email" 
+             name="email" 
+             placeholder="Your Email" 
+             ng-model="vm.userModel.Email" 
+             required>
+    </div>
+
+    <button type="button" 
+            class="btn btn-primary" 
+            ng-click="vm.UpdateUserById()" 
+            ng-disabled="!formUpdateUsers.$valid">Update</button>
+  </form>
+</fieldset>

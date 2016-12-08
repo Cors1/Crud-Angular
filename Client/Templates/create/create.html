@@ -1,0 +1,78 @@
+<fieldset class="infoUsers">
+
+  <legend>Add User</legend>
+
+  <form name="formaddUsers" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="add_user_name">Name</label>
+      <input type="text" 
+             class="form-control" 
+             id="add_user_name" 
+             name="name"
+             placeholder="Your Name" 
+             ng-model="vm.userModel.Pame" 
+             required 
+             popover="This field is required"  
+             popover-trigger="focus">
+    </div>
+
+    <div class="form-group">
+      <label for="add_user_surname">Surname</label>
+      <input type="text" 
+             class="form-control" 
+             id="add_user_surname" 
+             name="surname"
+             placeholder="Your Surname" 
+             ng-model="vm.userModel.Purname" 
+             required 
+             popover="This field is required"  
+             popover-trigger="focus">
+    </div>
+
+    <div class="form-group">
+      <label for="add_user_age">Age</label>
+      <input type="number" 
+             class="form-control" 
+             id="add_user_age" 
+             name="age"
+             placeholder="Your Age" 
+             ng-model="vm.userModel.Pge" 
+             required 
+             popover="This field is required"  
+             popover-trigger="focus">
+    </div>
+
+    <div class="form-group">
+      <label for="add_user_email">Email</label>
+      <input type="email" 
+             class="form-control" 
+             id="add_user_email" 
+             name="email"
+             placeholder="Your Email" 
+             ng-model="vm.userModel.Pmail" 
+             required popover="This field is required"  
+             popover-trigger="focus">
+    </div>
+
+    <div class="form-group">
+      <label for="add_user_profile_picture">Photo</label>
+      <input type="file" 
+             class="form-control" 
+             id="add_user_profile_picture" 
+             name="profile_picture" 
+             uploader-model="vm.userModel.ProfilePicture" 
+             required 
+             popover="This field is required" 
+             popover-trigger="focus">
+    </div>
+
+    <button type="button" 
+            class="btn btn-primary"
+            ng-disabled="!formaddUsers.$valid" 
+            ng-click="vm.AddUser()">
+            Send
+    </button>
+
+  </form>
+</fieldset>

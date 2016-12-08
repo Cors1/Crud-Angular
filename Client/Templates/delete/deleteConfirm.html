@@ -1,0 +1,28 @@
+<div id="delete">
+	<div class="alert alert-danger" role="alert">
+		<p>
+			<strong>Id:</strong> {{vm.userModel.Id}}
+		</p>
+		<p>
+			<strong>Name:</strong> {{vm.userModel.Name}}
+		</p>
+		<p>
+			<strong>Surname:</strong> {{vm.userModel.Surname}}
+		</p>
+		<p>
+			<strong>Age:</strong> {{vm.userModel.Age}}
+		</p>
+		<p>
+			<strong>Email:</strong> {{vm.userModel.Email}}
+		</p>
+
+		<p>
+			¿Are you sure that you wanna delete to <strong>{{vm.userModel.Name}} {{vm.userModel.Surname}}</strong>?
+		</p>
+
+		<br>
+		
+		<button class="btn btn-primary" ng-click="vm.DeleteUserByIdConfirm()">Delete</button>
+		<a ui-sref="app.delete" class="btn btn-default">Cancel</a>
+	</div>
+</div>

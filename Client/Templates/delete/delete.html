@@ -1,0 +1,65 @@
+<fieldset class="infoUsers">
+
+	<legend>Delete User</legend>
+
+	<form name="formGetUserById">
+
+		<div class="form-group">
+	      <label for="delete_user_id">User ID</label>
+	      <input type="number" 
+							 class="form-control" 
+							 id="delete_user_id" 
+							 name="id" 
+							 placeholder="User ID" 
+							 ng-model="vm.userModel.Id" 
+							 required>
+	      <br>
+	      <button type="button" 
+								class="btn btn-primary" 
+								ng-disabled="!formGetUserById.id.$valid"
+								ng-click="vm.GetUserInfoById()">
+								Search
+				</button>
+	    </div>
+	</form>
+
+</fieldset>
+
+<div class="table-responsive infoUsers">
+	<table class="table">
+	    <thead>
+	      <tr>
+	        <th>
+	          ID
+	        </th>
+	        <th>
+	          Name
+	        </th>
+	        <th>
+	          Surname
+	        </th>
+	        <th>
+	          Age
+	        </th>
+	        <th>
+	          Email  
+	        </th>
+	        <th>
+	        	Delete
+	        </th>
+	      </tr>  
+	    </thead>  
+	    <tbody>
+	      <tr>
+	        <td>{{vm.userModel.Id}}</td>
+	        <td>{{vm.userModel.Name}}</td>
+	        <td>{{vm.userModel.Surname}}</td>
+	        <td>{{vm.userModel.Age}}</td>
+	        <td>{{vm.userModel.Email}}</td>
+	        <td>
+	        	<a ng-click="vm.GoToUserDetail(vm.userModel)" class="btn btn-danger">X</a>
+	        </td>
+	      </tr>  
+	    </tbody>
+  	</table>
+</div>
