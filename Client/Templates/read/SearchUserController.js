@@ -11,14 +11,14 @@
 		'$uibModal',
 		'CRUD.AngularPrj.Blocks.Utils',
 		'CRUD.AngularPrj.UserModel',
-		'GetListUsers'
+		'CRUD.AngularPrj.ReadUserFactory'
 	];
 	
 	function ReadUserController($state, 
 								$uibModal, 
 								Utils,
 								UserModel,
-								GetListUsers)
+								ReadUserFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -55,13 +55,22 @@
 
 		function Initialize()
 		{
-			if(GetListUsers.HasError)
-			{
-				Utils.ShowErrorMessage(GetListUsers.UIMessage);
-				return;
-			}
+			ReadUserFactory.GetAllUsers().then(
+				responseDTO =>
+				{
+					if(responseDTO.HasError)
+					{
+						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						return;
+					}
 
-			vm.userModel.UsersList = GetListUsers.ResponseData;
+					vm.userModel.UsersList = responseDTO.ResponseData;
+				},
+				error => {
+					alert('There was an error getting data');
+					console.log(error);
+				}
+			);
 		}
 
 		Initialize();

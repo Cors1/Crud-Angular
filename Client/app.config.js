@@ -105,17 +105,6 @@
 			})
 
 		$urlRouterProvider.otherwise('/');
-
-		/*----- Resolve Methods -----*/
-
-		GetListUsers.$inject = [
-			'CRUD.AngularPrj.ReadUserFactory'
-		];
-
-		function GetListUsers(ReadUserFactory)
-		{
-			return ReadUserFactory.GetAllUsers();
-		}
 	}
 
 })();	

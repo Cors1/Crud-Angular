@@ -30,15 +30,13 @@
 			var url = ProjectConstants.URL_SERVER + "GetAllUsers.php";
 
 			$http.get(url)
-			.success(
-				function(data)
-				{
-					defered.resolve(data);
+			.then(
+				d => {
+					defered.resolve(d.data);
 				}
 			)
-			.error(
-				function(err)
-				{
+			.catch(
+				error => {
 					defered.reject(err);
 				}
 			);

@@ -7,11 +7,11 @@
 		.controller('CRUD.AngularPrj.HeaderController', HeaderController);
 
 	HeaderController.$inject = [
-		'GetListUsers',
+		'CRUD.AngularPrj.ReadUserFactory',
 		'CRUD.AngularPrj.Blocks.Utils'
 	];
 	
-	function HeaderController(GetListUsers,
+	function HeaderController(ReadUserFactory,
 							  Utils)
 	{
 		//############ Instance Properties ###################
@@ -27,13 +27,22 @@
 
         function Initialize()
         {
-			if(GetListUsers.HasError)
-			{
-				Utils.ShowErrorMessage(GetListUsers.UIMessage);
-				return;
-			}
+			ReadUserFactory.GetAllUsers().then(
+				responseDTO =>
+				{
+					if(responseDTO.HasError)
+					{
+						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						return;
+					}
 
-            vm.usersCount = GetListUsers.ResponseData.length;
+					vm.usersCount = responseDTO.ResponseData.length;
+				},
+				error => {
+					alert('There was an error getting data');
+					console.log(error);
+				}
+			);
         }
 
 		Initialize();
