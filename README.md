@@ -2,9 +2,9 @@
 Basic CRUD using AngularJs 1.x, PHP and MySQL technologies.
 
 ## Other Technologies Used
-    1.[Bower](https://bower.io/)
-    2.[Gulp](http://gulpjs.com/)
-    3.[Npm](https://www.npmjs.com/)
+    1.[Bower](//bower.io)
+    2.[Gulp](//gulpjs.com)
+    3.[Npm](//www.npmjs.com)
 
 ## Steps To Configurate Project
     1. Create a database in PHPMyAdmin with the name "crud_angular".
