@@ -4,8 +4,7 @@ var gulp   = require('gulp'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
 	uglify = require('gulp-uglifyjs'),
-    del    = require('del'),
-    babel  = require('gulp-babel');
+    del    = require('del');
 
 var dateTime = new Date();
 
