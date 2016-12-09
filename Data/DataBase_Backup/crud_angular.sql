@@ -32,7 +32,7 @@ CREATE TABLE `clientes` (
   `surname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `age` int(3) NOT NULL,
   `email` varchar(70) COLLATE utf8_spanish_ci NOT NULL,
-  `image` longblob NOT NULL
+  `image` varchar(254) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
