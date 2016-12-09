@@ -2,7 +2,9 @@
 
   <legend>Add User</legend>
 
-  <form name="formaddUsers" enctype="multipart/form-data">
+  <form name="formaddUsers" 
+        enctype="multipart/form-data"
+        method="POST">
 
     <div class="form-group">
       <label for="add_user_name">Name</label>
@@ -11,7 +13,7 @@
              id="add_user_name" 
              name="name"
              placeholder="Your Name" 
-             ng-model="vm.userModel.Pame" 
+             ng-model="vm.userModel.Name" 
              required 
              popover="This field is required"  
              popover-trigger="focus">
@@ -24,7 +26,7 @@
              id="add_user_surname" 
              name="surname"
              placeholder="Your Surname" 
-             ng-model="vm.userModel.Purname" 
+             ng-model="vm.userModel.Surname" 
              required 
              popover="This field is required"  
              popover-trigger="focus">
@@ -37,7 +39,7 @@
              id="add_user_age" 
              name="age"
              placeholder="Your Age" 
-             ng-model="vm.userModel.Pge" 
+             ng-model="vm.userModel.Age" 
              required 
              popover="This field is required"  
              popover-trigger="focus">
@@ -50,7 +52,7 @@
              id="add_user_email" 
              name="email"
              placeholder="Your Email" 
-             ng-model="vm.userModel.Pmail" 
+             ng-model="vm.userModel.Email" 
              required popover="This field is required"  
              popover-trigger="focus">
     </div>

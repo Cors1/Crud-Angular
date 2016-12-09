@@ -26,31 +26,18 @@
 
 		vm.userModel = new UserModel();
 
-		
-		if(GetListUsers == 1)
-		{
-			Utils.ShowErrorMessage('There are 0 records to show');
-		}
-		else 
-		{
-			vm.userModel.UsersList = GetListUsers;
-		}
-
 		vm.UserDetail = UserDetail;
 		vm.DeleteUser = DeleteUser;
 
 		//############ Public Functions ###################
 
-		function UserDetail(userObj){
+		function UserDetail(userObj)
+		{
+			$state.go('app.read.detail', {userDetail: userObj});
+		}
 
-			$state.go('app.read.detail', {
-				userDetail: userObj
-			});
-
-		};
-
-		function DeleteUser(userDetailObj){
-
+		function DeleteUser(userDetailObj)
+		{
 			var modalInstance = $uibModal.open(
 				{
 					templateUrl: 'Client/Templates/read/modalDeleteConfirm.html',
@@ -62,10 +49,22 @@
 				}
 			);
 
-		};
+		}
 
 		//############ Private Functions ###################
 
+		function Initialize()
+		{
+			if(GetListUsers.HasError)
+			{
+				Utils.ShowErrorMessage(GetListUsers.UIMessage);
+				return;
+			}
+
+			vm.userModel.UsersList = GetListUsers.ResponseData;
+		}
+
+		Initialize();
 	};	
 
 })();

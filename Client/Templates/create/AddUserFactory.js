@@ -37,14 +37,14 @@
 				formData.append('Surname', addUserModel.Surname);
 				formData.append('Age', addUserModel.Age);
 				formData.append('Email', addUserModel.Email);
-				formData.append('File', addUserModel.ProfilePicture);
+				formData.append('file', addUserModel.ProfilePicture);
 
 				$http
 					.post(url, formData, {
 						headers: {
 							"Content-type": undefined
 						},
-						transformRequest: formData
+						transformRequest: angular.identity
 					})
 					.success(
 						function(data)
@@ -60,8 +60,7 @@
 					);
 
 				return defered.promise;
-			};
-
-	};	
+		}
+	}
 
 })();

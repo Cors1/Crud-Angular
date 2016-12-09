@@ -7,10 +7,12 @@
 		.controller('CRUD.AngularPrj.HeaderController', HeaderController);
 
 	HeaderController.$inject = [
-		'GetListUsers'
+		'GetListUsers',
+		'CRUD.AngularPrj.Blocks.Utils'
 	];
 	
-	function HeaderController(GetListUsers)
+	function HeaderController(GetListUsers,
+							  Utils)
 	{
 		//############ Instance Properties ###################
 
@@ -25,7 +27,13 @@
 
         function Initialize()
         {
-            vm.usersCount = GetListUsers == 1 ? 0 : GetListUsers.length;
+			if(GetListUsers.HasError)
+			{
+				Utils.ShowErrorMessage(GetListUsers.UIMessage);
+				return;
+			}
+
+            vm.usersCount = GetListUsers.ResponseData.length;
         }
 
 		Initialize();

@@ -8,6 +8,6 @@
 			'ui.bootstrap',
 
 			'CRUD.AngularPrj.Blocks'
-		])
+		]);
 
 })();	

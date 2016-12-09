@@ -27,7 +27,7 @@
 		function GetAllUsers()
 		{		
 			var defered = $q.defer();
-			var url = ProjectConstants.URL_SERVER + "getAllUsers.php";
+			var url = ProjectConstants.URL_SERVER + "GetAllUsers.php";
 
 			$http.get(url)
 			.success(

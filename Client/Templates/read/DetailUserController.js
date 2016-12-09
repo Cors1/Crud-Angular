@@ -14,11 +14,14 @@
 	{
 		var vm = this;
 
-		console.log($stateParams);
-		console.log($stateParams.userDetail);
+		vm.userDetail = {};
 
-		vm.userDetail = $stateParams;
+		function Initialize()
+		{
+			vm.userDetail = $stateParams.userDetail;
+		}
 
-	};	
+		Initialize();
+	}
 
 })();

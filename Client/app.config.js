@@ -73,14 +73,14 @@
 
 			.state('app.read.detail', {
 				url: 'search/detail',
+				params: {
+					userDetail: null
+				},
 				views: {
 					'currentview@': {
 						templateUrl: templateRelativePath + 'read/detail.html',
 						controller: 'CRUD.AngularPrj.UserDetailController',
-						controllerAs: 'vm',
-						params: {
-							userDetail: null
-						}
+						controllerAs: 'vm'
 					}
 				}
 			})

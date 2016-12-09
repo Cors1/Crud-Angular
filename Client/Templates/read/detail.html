@@ -1,23 +1,24 @@
 <div class="jumbotron info">
 	<div id="detail">
-		<img src="data:image/jpg;base64, {{vm.user.image}}" alt="Images" class="img-circle img-responsive">
+		<img src="{{vm.userDetail.Image}}" alt="Images" class="img-circle img-responsive">
 	</div>
-  	<h2 align="center"><strong>Detail Person</strong></h2>
+  	<h2 align="center"><strong>User Information</strong></h2>
 	<p align="center">
-		<strong>Id:</strong></strong> {{vm.user.id}}
+		<strong>Id:</strong></strong> {{vm.userDetail.Id}}
 	</p>
 	<p align="center">
-		<strong>Name:</strong> {{vm.user.name}}
+		<strong>Name:</strong> {{vm.userDetail.Name}}
 	</p>
 	<p align="center">
-		<strong>Surname:</strong> {{vm.user.surname}}
+		<strong>Surname:</strong> {{vm.userDetail.Surname}}
 	</p>
 	<p align="center">
-		<strong>Age:</strong> {{vm.user.age}}
+		<strong>Age:</strong> {{vm.userDetail.Age}}
 	</p>
 	<p align="center">
-		<strong>Email:</strong> {{vm.user.email}}
+		<strong>Email:</strong> {{vm.userDetail.Email}}
 	</p>
+	
 	<p align="center">
 		<a class="btn btn-primary btn-lg" ui-sref="app.read" role="button">Back</a>
 	</p>

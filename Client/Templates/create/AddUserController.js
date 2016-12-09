@@ -27,14 +27,20 @@
 		function AddUser(){
 
 			vm.userModel.AddUser().then(
-				function(data)
+				function(responseDTO)
 				{
-					Utils.ShowSuccessMessage(data.ResponseMessage);
+					if(responseDTO.HasError)
+					{
+						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						return;
+					}
+
+					Utils.ShowSuccessMessage(responseDTO.UIMessage);
 					ClearAddUserForm();
 				},
 				function(err)
 				{
-					Utils.ShowErrorMessage(err.ResponseMessage || err);
+					Utils.ShowErrorMessage(err);
 					ClearAddUserForm();
 				}
 			);
