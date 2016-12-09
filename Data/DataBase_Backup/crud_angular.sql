@@ -38,16 +38,6 @@ CREATE TABLE `clientes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `imagenes`
---
-
-CREATE TABLE `imagenes` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `image` longblob NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
 -- Índices para tablas volcadas
 --
 
@@ -55,12 +45,6 @@ CREATE TABLE `imagenes` (
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `imagenes`
---
-ALTER TABLE `imagenes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -73,10 +57,3 @@ ALTER TABLE `imagenes`
 ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `imagenes`
---
-ALTER TABLE `imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
