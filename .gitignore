@@ -43,4 +43,4 @@ Temporary Items
 .apdisk
 
 # Project Files To Ignore
-Client/GulpTasks/concat/om/*
+Client/GulpTasks/Test/*
