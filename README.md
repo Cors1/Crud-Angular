@@ -2,7 +2,7 @@
 Basic CRUD using AngularJs 1.x, PHP and MySQL technologies.
 
 ## Other Technologies Used
-    1.[Bower](//bower.io)
+    1.[@Bower](//bower.io)
     2.[Gulp](//gulpjs.com)
     3.[Npm](//www.npmjs.com)
 
