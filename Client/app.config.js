@@ -23,10 +23,7 @@
 					'headerview': {
 						templateUrl: templateRelativePath + 'header/header.html',
 						controller: 'CRUD.AngularPrj.HeaderController',
-						controllerAs: 'vm',
-						resolve: {
-							GetListUsers: GetListUsers
-						}
+						controllerAs: 'vm'
 					},
 					'currentview': {
 						templateUrl: templateRelativePath + 'create/create.html',
@@ -63,10 +60,7 @@
 					'currentview@': {
 						templateUrl: templateRelativePath + 'read/read.html',
 						controller: 'CRUD.AngularPrj.ReadUserController',
-						controllerAs: 'vm',
-						resolve: {
-							GetListUsers: GetListUsers
-						}
+						controllerAs: 'vm'
 					}
 				}
 			})
