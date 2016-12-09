@@ -9,12 +9,12 @@
 	ModalDeleteController.$inject = [
 		'$uibModalInstance', 
 		'UserDetail',
-		'CRUD.AngularPrj.Blocks.Utils'
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
 	];
 
 	function ModalDeleteController($uibModalInstance,
 								   UserDetail,
-								   Utils)
+								   UtilsFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -32,12 +32,12 @@
 			vm.userDetail.DeleteUserById().then(
 				function (data)
 				{
-					Utils.ShowSuccessMessage(data.Message);
+					UtilsFactory.ShowSuccessMessage(data.Message);
 					$uibModalInstance.dismiss('cancel');
 				},
 				function (err)
 				{
-					Utils.ShowErrorMessage(err);
+					UtilsFactory.ShowErrorMessage(err);
 				}
 			);
 		}
@@ -48,7 +48,5 @@
 		}
 
 		//############ Private Functions ###################
-
-	};
-
+	}
 })();

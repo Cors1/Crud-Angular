@@ -10,9 +10,9 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "lib",
+    "Client/GulpTasks/node_modules",
+    "Client/lib",
+    "Client/GulpTasks/concat",
     "test",
     "tests"
   ],

@@ -8,11 +8,11 @@
 
 	HeaderController.$inject = [
 		'CRUD.AngularPrj.ReadUserFactory',
-		'CRUD.AngularPrj.Blocks.Utils'
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
 	];
 	
 	function HeaderController(ReadUserFactory,
-							  Utils)
+							  UtilsFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -32,21 +32,20 @@
 				{
 					if(responseDTO.HasError)
 					{
-						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
 						return;
 					}
 
 					vm.usersCount = responseDTO.ResponseData.length;
 				},
 				error => {
-					alert('There was an error getting data');
+					UtilsFactory.ShowErrorMessage('There was an error getting data');
 					console.log(error);
 				}
 			);
         }
 
 		Initialize();
-
-	};	
+	}
 
 })();

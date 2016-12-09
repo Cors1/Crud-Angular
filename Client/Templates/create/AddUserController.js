@@ -7,11 +7,11 @@
 		.controller('CRUD.AngularPrj.CreateUserController', CreateUserController);
 
 	CreateUserController.$inject = [
-		'CRUD.AngularPrj.Blocks.Utils',
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory',
 		'CRUD.AngularPrj.UserModel'
 	];
 	
-	function CreateUserController(Utils,
+	function CreateUserController(UtilsFactory,
 								  UserModel)
 	{
 		//############ Instance Properties ###################
@@ -27,24 +27,23 @@
 		function AddUser(){
 
 			vm.userModel.AddUser().then(
-				function(responseDTO)
+				responseDTO =>
 				{
 					if(responseDTO.HasError)
 					{
-						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
 						return;
 					}
 
-					Utils.ShowSuccessMessage(responseDTO.UIMessage);
+					UtilsFactory.ShowSuccessMessage(responseDTO.UIMessage);
 					ClearAddUserForm();
 				},
-				function(err)
-				{
-					Utils.ShowErrorMessage(err);
+				error => {
+					UtilsFactory.ShowErrorMessage('There was an error getting data');
 					ClearAddUserForm();
 				}
 			);
-		};
+		}
 
 		//############ Private Functions ###################
 
@@ -53,6 +52,6 @@
 		{
 			vm.userModel = new UserModel();
 		}
-	};	
+	}
 
 })();

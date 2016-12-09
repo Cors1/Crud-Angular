@@ -9,12 +9,12 @@
 	DeleteUserController.$inject = [
 		'$state', 
 		'CRUD.AngularPrj.UserModel',
-		'CRUD.AngularPrj.Blocks.Utils'
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
 	];
 	
 	function DeleteUserController($state,
 							  	  UserModel,
-								  Utils)
+								  UtilsFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -34,7 +34,7 @@
 				{
 					if(data == 1)
 					{
-						Utils.ShowErrorMessage('User not found');
+						UtilsFactory.ShowErrorMessage('User not found');
 						ClearUserModel();
 						return;
 					} 
@@ -43,7 +43,7 @@
 				}, 
 				function(err)
 				{
-					Utils.ShowErrorMessage(err);
+					UtilsFactory.ShowErrorMessage(err);
 				}
 			);	
 		}
@@ -55,8 +55,7 @@
 					userDetail: userDetailObj
 				}
 			);
-
-		};
+		}
 
 		//############ Private Functions ###################
 
@@ -64,6 +63,6 @@
 		{
             vm.userModel = new UserModel();
         }
-	};	
+	}
 
 })();		

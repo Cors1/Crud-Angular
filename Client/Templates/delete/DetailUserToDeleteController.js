@@ -9,12 +9,12 @@
 	DetailUserToDeleteController.$inject = [
 		'$state', 
 		'$stateParams',
-		'CRUD.AngularPrj.Blocks.Utils'
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
 	];	
 
 	function DetailUserToDeleteController($state, 
 						  			  	  $stateParams,
-										  Utils)
+										  UtilsFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -31,20 +31,19 @@
 			vm.userModel.DeleteUserById().then(
 				function (data)
 				{
-					Utils.ShowSuccessMessage(data.Message);
+					UtilsFactory.ShowSuccessMessage(data.Message);
 					$state.go('app.delete');
 				},
 				function (err)
 				{
-					Utils.ShowErrorMessage(err);
+					UtilsFactory.ShowErrorMessage(err);
 					$state.go('app.delete');
 				}
 			);
-
-		};
+		}
 
 		//############ Private Functions ###################
 
-	};
+	}
 
 })();

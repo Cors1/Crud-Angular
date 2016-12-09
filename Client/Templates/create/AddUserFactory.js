@@ -26,40 +26,38 @@
 
 		//############ Public Functions ###################
 		
-		function AddNewUser(addUserModel){
+		function AddNewUser(addUserModel)
+		{
+			var defered = $q.defer();
 
-				var defered = $q.defer();
+			var url = ProjectConstants.URL_SERVER + "AddUser.php";
 
-				var url = ProjectConstants.URL_SERVER + "AddUser.php";
+			var formData = new FormData();
+			formData.append('Name', addUserModel.Name);
+			formData.append('Surname', addUserModel.Surname);
+			formData.append('Age', addUserModel.Age);
+			formData.append('Email', addUserModel.Email);
+			formData.append('file', addUserModel.ProfilePicture);
 
-				var formData = new FormData();
-				formData.append('Name', addUserModel.Name);
-				formData.append('Surname', addUserModel.Surname);
-				formData.append('Age', addUserModel.Age);
-				formData.append('Email', addUserModel.Email);
-				formData.append('file', addUserModel.ProfilePicture);
+			$http
+				.post(url, formData, {
+					headers: {
+						"Content-type": undefined
+					},
+					transformRequest: angular.identity
+				})
+				.then(
+					d => {
+						defered.resolve(d.data);
+					}
+				)
+				.catch(
+					error => {
+						defered.reject(err);
+					}
+				);
 
-				$http
-					.post(url, formData, {
-						headers: {
-							"Content-type": undefined
-						},
-						transformRequest: angular.identity
-					})
-					.success(
-						function(data)
-						{
-							defered.resolve(data);
-						}
-					)
-					.error(
-						function(err)
-						{
-							defered.reject(err);
-						}
-					);
-
-				return defered.promise;
+			return defered.promise;
 		}
 	}
 

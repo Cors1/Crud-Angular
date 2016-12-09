@@ -7,7 +7,7 @@
 			'ui.router',
 			'ui.bootstrap',
 
-			'CRUD.AngularPrj.Blocks'
+			'CRUD.AngularPrj.Blocks.Utils'
 		]);
 
 })();	

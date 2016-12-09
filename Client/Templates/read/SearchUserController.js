@@ -9,14 +9,14 @@
 	ReadUserController.$inject = [
 		'$state', 
 		'$uibModal',
-		'CRUD.AngularPrj.Blocks.Utils',
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory',
 		'CRUD.AngularPrj.UserModel',
 		'CRUD.AngularPrj.ReadUserFactory'
 	];
 	
 	function ReadUserController($state, 
 								$uibModal, 
-								Utils,
+								UtilsFactory,
 								UserModel,
 								ReadUserFactory)
 	{
@@ -60,20 +60,21 @@
 				{
 					if(responseDTO.HasError)
 					{
-						Utils.ShowErrorMessage(responseDTO.UIMessage);
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
 						return;
 					}
 
 					vm.userModel.UsersList = responseDTO.ResponseData;
 				},
-				error => {
-					alert('There was an error getting data');
+				error => 
+				{
+					UtilsFactory.ShowErrorMessage('There was an error getting data');
 					console.log(error);
 				}
 			);
 		}
 
 		Initialize();
-	};	
+	}
 
 })();

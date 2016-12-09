@@ -43,7 +43,7 @@
 				);
 
 				return defered.promise;
-			};
+		}
 
 		function UpdateUserById(userDataObj){
 			
@@ -65,8 +65,7 @@
 			);
 
 			return defered.promise;
-		};
+		}
 
-	};	
-
+	}
 })();
