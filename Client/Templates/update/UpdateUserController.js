@@ -67,6 +67,7 @@
 					}
 
 					UtilsFactory.ShowSuccessMessage(responseDTO.UIMessage);
+					vm.ShowUpdateForm = false;
 				},
 				error => 
 				{
