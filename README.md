@@ -1,6 +1,8 @@
 # CRUD AngularJs
 Basic CRUD using AngularJs 1.x, PHP and MySQL technologies.
 
+Using a PHP data layer to perform structure and usability in application.
+
 ## Other Technologies Used
     1. Bower
     2. Gulp
