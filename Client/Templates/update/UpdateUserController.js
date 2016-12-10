@@ -19,6 +19,7 @@
 		var vm = this;
 
 		vm.userModel = new UserModel();
+		vm.ShowUpdateForm = false;
 		
 		vm.GetUserInfoById = GetUserInfoById;
 		vm.UpdateUserById = UpdateUserById;
@@ -35,16 +36,19 @@
 					{
 						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
 						ClearUserModel();
+						vm.ShowUpdateForm = false;
 						return;
 					}
 
 					vm.userModel = new UserModel(responseDTO.ResponseData[0]);
+					vm.ShowUpdateForm = true;
 				},
 				error => 
 				{
 					UtilsFactory.ShowErrorMessage('There was an error getting data');
 					console.log(error);
 					ClearUserModel();
+					vm.ShowUpdateForm = false;
 				}
 			);
 		}
