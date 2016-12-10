@@ -21,6 +21,7 @@ gulp.task('filesClean', function () {
     return gulp.src([
         '../Blocks/**/*.js',
         '../Directives/*.js',
+        '../Services/*.js',
         '../Models/*.js',
         '../Templates/**/*.js'
     ])
@@ -35,9 +36,11 @@ gulp.task('filesConcat', ['filesClean'], function () {
             '../Blocks/Utils/module.js',
             '../Blocks/Utils/Services/*.js',
 
-            '../Directives/uploaderModel.js',
+            '../Directives/*.js',
 
-            '../Models/UserModel.js',
+            '../Services/*.js',
+
+            '../Models/*.js',
 
             '../Templates/app.module.js',
             '../Templates/app.config.js',
