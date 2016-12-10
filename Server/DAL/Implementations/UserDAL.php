@@ -1,6 +1,6 @@
 <?php 
 
-    class UserDAL
+    class UserDAL implements IUserDAL
     {
         //##### Public Methods
 
@@ -75,10 +75,54 @@
             try
             {
                 $responseDTO = $this->DeleteUserInfoById($userObj);
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $responseDTO = $this->ValidateLastRecordToResetAutoIncement();
             }
             catch (Exception $e)
             {
                 $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
+        }
+
+        public function ValidateLastRecordToResetAutoIncement()
+        {
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $dataBaseServicesBLL = new DataBaseServicesBLL();
+
+                $responseDTO = $dataBaseServicesBLL->InitializeDataBaseConnection();
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $query = "SELECT * FROM clients ORDER BY id";
+                $q = $dataBaseServicesBLL->connection->prepare($query);
+                $q->execute();
+
+                //Recuperar los registros de la BD
+                $result = $q->fetchAll();	
+
+                if($result == null)
+                {
+                    $query = "ALTER TABLE clients AUTO_INCREMENT = 1";
+                    $q = $dataBaseServicesBLL->connection->prepare($query);
+                    $q->execute();
+                    $responseDTO->UIMessage="User Deleted";
+                } 
+                
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to validate records", $e->getMessage());
             }
 
             return $responseDTO;
@@ -100,7 +144,7 @@
                     return $responseDTO;
                 }
 
-                $query = "SELECT * FROM clientes ORDER BY id";
+                $query = "SELECT * FROM clients ORDER BY id";
                 $q = $dataBaseServicesBLL->connection->prepare($query);
                 $q->execute();
 
@@ -154,7 +198,7 @@
                     return $responseDTO;
                 }
 
-                $query = "INSERT INTO clientes (id, name, surname, age, email, image) VALUES (:id, :name, :surname, :age, :email, :image)";
+                $query = "INSERT INTO clients (id, name, surname, age, email, image) VALUES (:id, :name, :surname, :age, :email, :image)";
 		        $q = $dataBaseServicesBLL->connection->prepare($query);
 		        $q->execute(array(':id' => NULL, 
 				        		  ':name' => $currentUserObj->Name,
@@ -189,7 +233,7 @@
                     return $responseDTO;
                 }
 
-                $query = "SELECT * FROM clientes WHERE id = :id";
+                $query = "SELECT * FROM clients WHERE id = :id";
                 $q = $dataBaseServicesBLL->connection->prepare($query);
                 $q->execute(array(':id' => $userObj->Id));
 
@@ -243,7 +287,7 @@
                     return $responseDTO;
                 }
 
-                $query = "UPDATE clientes SET name = :name, surname = :surname, age = :age, email = :email WHERE id = :id";
+                $query = "UPDATE clients SET name = :name, surname = :surname, age = :age, email = :email WHERE id = :id";
                 $q = $dataBaseServicesBLL->connection->prepare($query);
                 $q->execute(array(':id' => $userObj->Id,
                                   ':name' => $userObj->Name,
@@ -277,7 +321,7 @@
                     return $responseDTO;
                 }
 
-                $query = "DELETE FROM clientes WHERE id = :id";
+                $query = "DELETE FROM clients WHERE id = :id";
                 $q = $dataBaseServicesBLL->connection->prepare($query);
                 $q->execute(array(':id' => $userObj->Id));
 
