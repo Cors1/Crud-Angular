@@ -4,13 +4,13 @@
 
 	angular
 		.module('CRUD.AngularPrj.App')
-		.directive('uploaderModel', uploaderModel);
+		.directive('uploaderModel', UploaderModel);
 
-	uploaderModel.$inject = [
+	UploaderModel.$inject = [
 		'$parse'
 	];	
 
-	function uploaderModel($parse)
+	function UploaderModel($parse)
 	{
 		var directive = {
 			link: link

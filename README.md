@@ -12,5 +12,5 @@ Basic CRUD using AngularJs 1.x, PHP and MySQL technologies.
     3. Clone Repository.
     4. Open project with your prefered editor and run *bower install* to install dependencies.
     
-###### Optional Actions
-    - Go to *Client/GulpTasks* in command prompt and run *gulp* command to execute some tasks to project.
+##### Optional Actions
+        - Go to *Client/GulpTasks* in command prompt and run *gulp* command to execute some tasks to project.
