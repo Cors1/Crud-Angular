@@ -178,10 +178,24 @@
 
             try
             {
-                $content = file_get_contents($userObj->Image['tmp_name']);
+                if($userObj->Image['size'] > 2097152)
+                {
+                    $responseDTO->SetMessageError("File too large. File must be less than 2 megabytes");
+                    return $responseDTO;
+                }
+                
+                if($userObj->Image['tmp_name'] == "")
+                {
+                    $responseDTO->SetMessageError("There are no file to upload, file must be less than 2 megabytes");
+                    return $responseDTO;
+                }
+
+                $imageContent = file_get_contents($userObj->Image['tmp_name']);
+                $fileName = $userObj->Image['name'];
 		        $fileUrl = "Server/tmp/".$fileName;
-                $fp = fopen("../tmp/".$userObj->Image['name'], "w");
-                fwrite($fp, $content);
+
+                $fp = fopen("../tmp/".$fileName, "w");
+                fwrite($fp, $imageContent);
                 fclose($fp);
 
                 $userObj->Image = $fileUrl;

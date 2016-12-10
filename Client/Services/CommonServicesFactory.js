@@ -41,7 +41,7 @@
 			formData.append('Surname', addUserModel.Surname);
 			formData.append('Age', addUserModel.Age);
 			formData.append('Email', addUserModel.Email);
-			formData.append('file', addUserModel.ProfilePicture);
+			formData.append('Image', addUserModel.ProfilePicture);
 
 			$http
 				.post(url, formData, {

@@ -13,17 +13,19 @@
 
 	try
 	{ 		
-		$requestDTO->Name = $_POST['Name'];
-		$requestDTO->Surname = $_POST['Surname'];
-		$requestDTO->Age = $_POST['Age'];
-		$requestDTO->Email = $_POST['Email'];
-		$requestDTO->Image = $_FILES['file'];
+		$userDTO = new User();
 
-		$responseDTO = $userBLL->AddUser($requestDTO); 
+		$userDTO->Name = $_POST['Name'];
+		$userDTO->Surname = $_POST['Surname'];
+		$userDTO->Age = $_POST['Age'];
+		$userDTO->Email = $_POST['Email'];
+		$userDTO->Image = $_FILES['Image'];
+
+		$responseDTO = $userBLL->AddUser($userDTO); 
 	}
 	catch (Exception $e)
 	{
-		$responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se guardaban los datos", $e->getMessage());
+		$responseDTO->SetMessageErrorAndStackTrace("There was an error trying to save data", $e->getMessage());
 	}
 
 	echo json_encode($responseDTO);

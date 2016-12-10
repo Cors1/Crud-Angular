@@ -29,7 +29,7 @@
 
 		//############ Public Functions ###################
 
-		function DeleteUserById(id)
+		function DeleteUserById()
 		{
 			vm.userModel.DeleteUserById().then(
 				responseDTO =>

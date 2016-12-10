@@ -5,12 +5,14 @@ Basic CRUD using AngularJs 1.x, PHP and MySQL technologies.
     1. Bower
     2. Gulp
     3. Npm
+    4. Bootstrap
 
 ## Steps To Configurate Project
-    1. Create a database in PHPMyAdmin with the name _crud_angular_.
+    1. Create a database in PHPMyAdmin with the name crud_angular.
     2. Import [DataBase File] (Data/DataBase_Backup).
     3. Clone Repository.
-    4. Open project with your prefered editor and run _bower install_ to install dependencies.
+    4. Open project with your prefered editor and run bower install to install dependencies.
+    5. Create folder with the follow name "tmp" in Server/tmp.
     
-##### Optional Actions
-        - Go to _Client/GulpTasks_ in command prompt and run _gulp_ command to execute some tasks to project.
+#### Optional Actions
+      > Go to Client/GulpTasks in command prompt and run gulp command to execute some tasks to project.
