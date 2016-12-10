@@ -1,42 +1,28 @@
-<?php  
-	require('DBConnection/bdConnection.php');
-	require('Headers/headers.php');
-	require('Class/UserClass.php');
-	require('Class/DTO/ResponseDTO.php');
+<?php 
 
-	$dataAddForm = file_get_contents("php://input");
-	$objectData = json_decode($dataAddForm);
+	include_once("../Utils/Response/ResponseDTO.php");
+	include_once("../BLL/Interfaces/IDataBaseServicesBLL.php");
+	include_once("../BLL/Implementations/DataBaseServicesBLL.php");
+	include_once("../BLL/Interfaces/IUserBLL.php");
+	include_once("../DAL/Implementations/UserDAL.php");
+	include_once("../BLL/Implementations/UserBLL.php");
+	include_once("../DTO/UserDTO.php");
 
-	$query = "SELECT * FROM clientes WHERE id = :id";
-	$q = $con->prepare($query);
-	$q->execute(array(':id' => $objectData->Id));
+	$responseDTO = new ResponseDTO();
 
-	//Get records in the DB
-	$result = $q->fetchAll();	
-	
-	$arrayMessages = array();
-	while ($row = array_shift($result)) 
+	try
 	{
-		$objectData = new Users();
+		$userBLL = new UserBLL();
 
-		$objectData->id = $row['id'];
-		$objectData->name = $row['name'];
-		$objectData->surname = $row['surname'];
-		$objectData->age = $row['age'];
-		$objectData->email = $row['email'];
-		$objectData->image = base64_encode($row['image']);
+		$requestJson = file_get_contents("php://input");
+		$requestObj = json_decode($requestJson);
 
-		array_push($arrayMessages, $objectData);
-	};
-
-	if($arrayMessages == null)
+		$responseDTO = $userBLL->GetUserById($requestObj); 
+	}
+	catch (Exception $e)
 	{
-		echo "1";
-	} 
-	else 
-	{
-		echo json_encode($arrayMessages);
+		$responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get user by id", $e->getMessage());
 	}
 
-	$con = null;
+	echo json_encode($responseDTO);
 ?>

@@ -9,18 +9,20 @@
 	ModalDeleteController.$inject = [
 		'$uibModalInstance', 
 		'UserDetail',
-		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
+		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory',
+		'CRUD.AngularPrj.UserModel'
 	];
 
 	function ModalDeleteController($uibModalInstance,
 								   UserDetail,
-								   UtilsFactory)
+								   UtilsFactory,
+								   UserModel)
 	{
 		//############ Instance Properties ###################
 
 		var vm = this;
 
-		vm.userDetail = UserDetail;
+		vm.userModel = {};
 
 		vm.DeleteUserById = DeleteUserById;
 		vm.CancelDeleteUser = CancelDeleteUser;
@@ -29,15 +31,24 @@
 
 		function DeleteUserById(id)
 		{
-			vm.userDetail.DeleteUserById().then(
-				function (data)
+			vm.userModel.DeleteUserById().then(
+				responseDTO =>
 				{
-					UtilsFactory.ShowSuccessMessage(data.Message);
+					if(responseDTO.HasError)
+					{
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
+						$uibModalInstance.dismiss('cancel');
+						return;
+					}
+
+					UtilsFactory.ShowSuccessMessage(responseDTO.UIMessage);
 					$uibModalInstance.dismiss('cancel');
 				},
-				function (err)
+				error => 
 				{
-					UtilsFactory.ShowErrorMessage(err);
+					UtilsFactory.ShowErrorMessage('There was an error getting data');
+					console.log(error);
+					$uibModalInstance.dismiss('cancel');
 				}
 			);
 		}
@@ -48,5 +59,12 @@
 		}
 
 		//############ Private Functions ###################
+
+		function Initialize()
+		{
+			vm.userModel = new UserModel(UserDetail);
+		}
+
+		Initialize();
 	}
 })();

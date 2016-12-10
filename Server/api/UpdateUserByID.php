@@ -1,25 +1,28 @@
-<?php  
-	require('DBConnection/bdConnection.php');
-	require('Headers/headers.php');
-	require('Class/DTO/ResponseDTO.php');
+<?php 
 
-	$dataInfo = file_get_contents("php://input");
-	$objectUpdate = json_decode($dataInfo);
+	include_once("../Utils/Response/ResponseDTO.php");
+	include_once("../BLL/Interfaces/IDataBaseServicesBLL.php");
+	include_once("../BLL/Implementations/DataBaseServicesBLL.php");
+	include_once("../BLL/Interfaces/IUserBLL.php");
+	include_once("../DAL/Implementations/UserDAL.php");
+	include_once("../BLL/Implementations/UserBLL.php");
+	include_once("../DTO/UserDTO.php");
 
-	$query = "UPDATE clientes SET name = :name, surname = :surname, age = :age, email = :email WHERE id = :id";
-	$q = $con->prepare($query);
-	$q->execute(array(':id' => $objectUpdate->id,
-					  ':name' => $objectUpdate->name,
-					  ':surname' => $objectUpdate->surname,
-					  ':age' => $objectUpdate->age,
-					  ':email' => $objectUpdate->email));
-	
-	$arr = array(
-		"Result" => 1,
-		"Message" => "Person Updated"
-		);
-	
-	echo json_encode($arr);
+	$responseDTO = new ResponseDTO();
 
-	$con = null;
+	try
+	{
+		$userBLL = new UserBLL();
+
+		$requestJson = file_get_contents("php://input");
+		$requestObj = json_decode($requestJson);
+
+		$responseDTO = $userBLL->UpdateUserById($requestObj); 
+	}
+	catch (Exception $e)
+	{
+		$responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+	}
+
+	echo json_encode($responseDTO);
 ?>

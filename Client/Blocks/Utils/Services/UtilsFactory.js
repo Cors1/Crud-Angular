@@ -28,6 +28,8 @@
                 MessageType: 'success',
                 MessageTitle: 'Success'
             };
+
+            ShowToasterMessage(paramsObj);
         }
 
         function ShowErrorMessage(errorMessage)
@@ -37,6 +39,8 @@
                 MessageType: 'error',
                 MessageTitle: 'Error'
             };
+
+            ShowToasterMessage(paramsObj);
         }
 
 		//############ Private Functions ###################

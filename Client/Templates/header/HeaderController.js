@@ -7,11 +7,11 @@
 		.controller('CRUD.AngularPrj.HeaderController', HeaderController);
 
 	HeaderController.$inject = [
-		'CRUD.AngularPrj.ReadUserFactory',
+		'CRUD.AngularPrj.CommonServicesFactory',
 		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory'
 	];
 	
-	function HeaderController(ReadUserFactory,
+	function HeaderController(CommonServicesFactory,
 							  UtilsFactory)
 	{
 		//############ Instance Properties ###################
@@ -27,7 +27,7 @@
 
         function Initialize()
         {
-			ReadUserFactory.GetAllUsers().then(
+			CommonServicesFactory.GetAllUsers().then(
 				responseDTO =>
 				{
 					if(responseDTO.HasError)
@@ -38,7 +38,8 @@
 
 					vm.usersCount = responseDTO.ResponseData.length;
 				},
-				error => {
+				error => 
+				{
 					UtilsFactory.ShowErrorMessage('There was an error getting data');
 					console.log(error);
 				}

@@ -14,15 +14,26 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get users", $e->getMessage());
             }
 
             return $responseDTO;
         }
 
-        public function GetUserById()
+        public function GetUserById($userObj)
         {
+            $responseDTO = new ResponseDTO();
 
+            try
+            {
+                $responseDTO = $this->GetUserInfoById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
         public function AddUser($userObj)
@@ -35,20 +46,42 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to save user data", $e->getMessage());
             }
 
             return $responseDTO;
         }
 
-        public function UpdateUserById()
+        public function UpdateUserById($userObj)
         {
+            $responseDTO = new ResponseDTO();
 
+            try
+            {
+                $responseDTO = $this->UpdateUserInfoById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
-        public function DeleteUserById()
+        public function DeleteUserById($userObj)
         {
-            
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $responseDTO = $this->DeleteUserInfoById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
         //##### Private Methods
@@ -101,7 +134,7 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get users list", $e->getMessage());
             }
 
             return $responseDTO;
@@ -130,13 +163,131 @@
 						          ':email' => $currentUserObj->Email,
 						          ':image' => $currentUserObj->Image));
 
-        		$responseDTO->UIMessage = "Contact Saved";
+        		$responseDTO->UIMessage = "User added";
 
                 $dataBaseServicesBLL->connection = null;    
             }
             catch (Exception $e)
             {
                 $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to save data", $e->getMessage());
+            }
+
+            return $responseDTO;
+        }
+
+        private function GetUserInfoById($userObj)
+        {
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $dataBaseServicesBLL = new DataBaseServicesBLL();
+
+                $responseDTO = $dataBaseServicesBLL->InitializeDataBaseConnection();
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $query = "SELECT * FROM clientes WHERE id = :id";
+                $q = $dataBaseServicesBLL->connection->prepare($query);
+                $q->execute(array(':id' => $userObj->Id));
+
+                //Get records in the DB
+                $result = $q->fetchAll();	
+
+                $usersList = array();
+                while ($row = array_shift($result)) 
+                {
+                    $user = new User();
+
+                    $user->Id = $row['id'];
+                    $user->Name = $row['name'];
+                    $user->Surname = $row['surname'];
+                    $user->Age = $row['age'];
+                    $user->Email = $row['email'];
+                    $user->Image = $row['image'];
+
+                    array_push($usersList, $user);
+                };
+
+                if($usersList == null)
+                {
+                    $responseDTO->SetMessageError("There are not users");
+                    return $responseDTO;
+                } 
+                
+                $responseDTO->ResponseData = $usersList;
+
+                $dataBaseServicesBLL->connection = null;
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get users list", $e->getMessage());
+            }
+
+            return $responseDTO;
+        }
+
+        private function UpdateUserInfoById($userObj)
+        {
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $dataBaseServicesBLL = new DataBaseServicesBLL();
+
+                $responseDTO = $dataBaseServicesBLL->InitializeDataBaseConnection();
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $query = "UPDATE clientes SET name = :name, surname = :surname, age = :age, email = :email WHERE id = :id";
+                $q = $dataBaseServicesBLL->connection->prepare($query);
+                $q->execute(array(':id' => $userObj->Id,
+                                  ':name' => $userObj->Name,
+                                  ':surname' => $userObj->Surname,
+                                  ':age' => $userObj->Age,
+                                  ':email' => $userObj->Email));
+
+        		$responseDTO->UIMessage = "User updated";
+
+                $dataBaseServicesBLL->connection = null;    
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
+        }
+
+        private function DeleteUserInfoById($userObj)
+        {
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $dataBaseServicesBLL = new DataBaseServicesBLL();
+
+                $responseDTO = $dataBaseServicesBLL->InitializeDataBaseConnection();
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $query = "DELETE FROM clientes WHERE id = :id";
+                $q = $dataBaseServicesBLL->connection->prepare($query);
+                $q->execute(array(':id' => $userObj->Id));
+
+        		$responseDTO->UIMessage = "User deleted";
+
+                $dataBaseServicesBLL->connection = null;    
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to delete user by id", $e->getMessage());
             }
 
             return $responseDTO;

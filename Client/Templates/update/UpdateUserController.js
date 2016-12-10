@@ -25,22 +25,25 @@
 
 		//############ Public Functions ###################
 
-		function GetUserInfoById(){
+		function GetUserInfoById()
+		{
 
 			vm.userModel.GetUserInfoById().then(
-				function(data)
+				responseDTO =>
 				{
-					if(data == 1)
+					if(responseDTO.HasError)
 					{
-						UtilsFactory.ShowErrorMessage('User not found');
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
 						ClearUserModel();
 						return;
 					}
 
-					vm.userModel = new UserModel(data[0]);
-				}, 
-				function(err){
-					UtilsFactory.ShowErrorMessage(err);
+					vm.userModel = new UserModel(responseDTO.ResponseData[0]);
+				},
+				error => 
+				{
+					UtilsFactory.ShowErrorMessage('There was an error getting data');
+					console.log(error);
 					ClearUserModel();
 				}
 			);
@@ -49,15 +52,23 @@
 		function UpdateUserById(){
 			
 			vm.userModel.UpdateUserById().then(
-				function(data)
+				responseDTO =>
 				{
-					UtilsFactory.ShowSuccessMessage(data.Message);
 					ClearUserModel();
-				}, 
-				function(err)
+
+					if(responseDTO.HasError)
+					{
+						UtilsFactory.ShowErrorMessage(responseDTO.UIMessage);
+						return;
+					}
+
+					UtilsFactory.ShowSuccessMessage(responseDTO.UIMessage);
+				},
+				error => 
 				{
-					UtilsFactory.ShowErrorMessage(err);
-					ClearUserModel();	
+					UtilsFactory.ShowErrorMessage('There was an error trying to update data');
+					console.log(error);
+					ClearUserModel();
 				}
 			);
 		}

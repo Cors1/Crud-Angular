@@ -3,9 +3,9 @@
     interface IUserBLL
     {
         public function GetAllUsers();
-        public function GetUserById();
+        public function GetUserById($userObj);
         public function AddUser($userObj);
-        public function UpdateUserById();
-        public function DeleteUserById();
+        public function UpdateUserById($userObj);
+        public function DeleteUserById($userObj);
     }
 ?>

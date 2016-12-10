@@ -11,14 +11,14 @@
 		'$uibModal',
 		'CRUD.AngularPrj.Blocks.Utils.UtilsFactory',
 		'CRUD.AngularPrj.UserModel',
-		'CRUD.AngularPrj.ReadUserFactory'
+		'CRUD.AngularPrj.CommonServicesFactory'
 	];
 	
 	function ReadUserController($state, 
 								$uibModal, 
 								UtilsFactory,
 								UserModel,
-								ReadUserFactory)
+								CommonServicesFactory)
 	{
 		//############ Instance Properties ###################
 
@@ -55,7 +55,7 @@
 
 		function Initialize()
 		{
-			ReadUserFactory.GetAllUsers().then(
+			CommonServicesFactory.GetAllUsers().then(
 				responseDTO =>
 				{
 					if(responseDTO.HasError)

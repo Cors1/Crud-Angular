@@ -7,16 +7,10 @@
 		.factory('CRUD.AngularPrj.UserModel', UserModel);
 
 	UserModel.$inject = [
-		'CRUD.AngularPrj.AddUserFactory',
-        'CRUD.AngularPrj.UpdateUserFactory',
-        'CRUD.AngularPrj.ReadUserFactory',
-        'CRUD.AngularPrj.DeleteUserFactory'
+		'CRUD.AngularPrj.CommonServicesFactory'
 	];	
 
-	function UserModel(AddUserFactory,
-                       UpdateUserFactory,
-                       ReadUserFactory,
-                       DeleteUserFactory)
+	function UserModel(CommonServicesFactory)
 	{
         var Model = function(dataDTO)
         {
@@ -24,12 +18,17 @@
 
             angular.extend(this, {
 
-                Name : 'felipe',
-                Surname: 'tavera',
-                Age: 21,
-                Email: 'lftavera@hotmail.com',
+                //Attributes
+
+                Id: null,
+                Name : null,
+                Surname: null,
+                Age: null,
+                Email: null,
                 ProfilePicture: {},
                 UsersList: [],
+
+                //Methods
 
                 AddUser: AddUser,
                 GetUserInfoById: GetUserInfoById,
@@ -41,33 +40,33 @@
 
             function AddUser()
             {
-                return AddUserFactory.AddNewUser(_self);
+                return CommonServicesFactory.AddNewUser(_self);
             }
 
             function GetUserInfoById()
             {
-                return UpdateUserFactory.GetUserInfoById(
+                return CommonServicesFactory.GetUserInfoById(
                     {
-                        id: _self.Id
+                        Id: _self.Id
                     }
                 );
             }
 
             function GetAllUsers()
             {
-                return ReadUserFactory.GetAllUsers();
+                return CommonServicesFactory.GetAllUsers();
             }
 
             function UpdateUserById()
             {
-                return UpdateUserFactory.UpdateUserById(_self);
+                return CommonServicesFactory.UpdateUserById(_self);
             }
 
             function DeleteUserById()
             {
-                return DeleteUserFactory.DeleteUserById(
+                return CommonServicesFactory.DeleteUserById(
                     {
-                        id: _self.Id
+                        Id: _self.Id
                     }
                 );
             }

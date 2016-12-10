@@ -7,14 +7,14 @@
     	<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/FET__7Z89qY">Page not found</iframe>
     </div> 
     <div align="center">
-    	<p><strong>ID:</strong> {{vm.userDetail.Id}}</p>
-		<p><strong>Name:</strong> {{vm.userDetail.Name}}</p>
-		<p><strong>Surname:</strong> {{vm.userDetail.Surname}}</p>
-		<p><strong>Age:</strong> {{vm.userDetail.Age}}</p>
-		<p><strong>Email:</strong> {{vm.userDetail.Email}}</p>
+    	<p><strong>ID:</strong> {{vm.userModel.Id}}</p>
+		<p><strong>Name:</strong> {{vm.userModel.Name}}</p>
+		<p><strong>Surname:</strong> {{vm.userModel.Surname}}</p>
+		<p><strong>Age:</strong> {{vm.userModel.Age}}</p>
+		<p><strong>Email:</strong> {{vm.userModel.Email}}</p>
     </div>
     <br>
-	<h3 align="center">¿Do you want to delete the user: {{vm.userDetail.Name}} {{vm.userDetail.Surname}}?</h3>
+	<h3 align="center">¿Do you want to delete the user: {{vm.userModel.Name}} {{vm.userModel.Surname}}?</h3>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-danger" ng-click="vm.DeleteUserById()">Delete</button>

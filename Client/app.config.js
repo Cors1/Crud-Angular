@@ -91,15 +91,15 @@
 			})
 
 			.state('app.delete.deleteconfirm', {
-				url: 'delete/deleteconfirm',
+				url: '/deleteconfirm',
+				params: {
+					userDetail: null
+				},
 				views: {
 					'currentview@': {
 						templateUrl: templateRelativePath + 'delete/deleteConfirm.html',
 						controller: 'CRUD.AngularPrj.DetailUserToDeleteController',
-						controllerAs: 'vm',
-						params: {
-							userDetail: null
-						}
+						controllerAs: 'vm'
 					}
 				}
 			})

@@ -1,21 +1,28 @@
-<?php  
-	require('DBConnection/bdConnection.php');
-	require('Headers/headers.php');
-	require('Class/DTO/ResponseDTO.php');
+<?php 
 
-	$dataRequest = file_get_contents("php://input");
-	$objectToDelete = json_decode($dataRequest);
+	include_once("../Utils/Response/ResponseDTO.php");
+	include_once("../BLL/Interfaces/IDataBaseServicesBLL.php");
+	include_once("../BLL/Implementations/DataBaseServicesBLL.php");
+	include_once("../BLL/Interfaces/IUserBLL.php");
+	include_once("../DAL/Implementations/UserDAL.php");
+	include_once("../BLL/Implementations/UserBLL.php");
+	include_once("../DTO/UserDTO.php");
+
 	$responseDTO = new ResponseDTO();
 
-	$query = "DELETE FROM clientes WHERE id = :id";
-	$q = $con->prepare($query);
-	$q->execute(array(':id' => $objectToDelete->id));
+	try
+	{
+		$userBLL = new UserBLL();
 
-	$arr = array(
-		"Result" => 1,
-		"Message" => "Person Deleted"
-		);
+		$requestJson = file_get_contents("php://input");
+		$requestObj = json_decode($requestJson);
 
-	echo json_encode($arr);
-	$con = null;
+		$responseDTO = $userBLL->DeleteUserById($requestObj); 
+	}
+	catch (Exception $e)
+	{
+		$responseDTO->SetMessageErrorAndStackTrace("There was an error trying to delete user by id", $e->getMessage());
+	}
+
+	echo json_encode($responseDTO);
 ?>

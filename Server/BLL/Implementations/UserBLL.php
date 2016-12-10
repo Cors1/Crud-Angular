@@ -18,15 +18,34 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get users", $e->getMessage());
             }
 
             return $responseDTO;
         }
 
-        public function GetUserById()
+        public function GetUserById($userObj)
         {
+            $responseDTO = new ResponseDTO();
 
+            try
+            {
+                $_userDAL = new UserDAL();
+                
+                $responseDTO = $this->ValidateUserID($userObj);
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $responseDTO = $_userDAL->GetUserById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
         public function AddUser($userObj)
@@ -53,20 +72,58 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to save user form", $e->getMessage());
             }
 
             return $responseDTO;
         }
 
-        public function UpdateUserById()
+        public function UpdateUserById($userObj)
         {
+            $responseDTO = new ResponseDTO();
 
+            try
+            {
+                $_userDAL = new UserDAL();
+                
+                $responseDTO = $this->ValidateUser($userObj);
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $responseDTO = $_userDAL->UpdateUserById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to update user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
-        public function DeleteUserById()
+        public function DeleteUserById($userObj)
         {
-            
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                $_userDAL = new UserDAL();
+                
+                $responseDTO = $this->ValidateUserID($userObj);
+                if($responseDTO->HasError)
+                {
+                    return $responseDTO;
+                }
+
+                $responseDTO = $_userDAL->DeleteUserById($userObj);
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to delete user by id", $e->getMessage());
+            }
+
+            return $responseDTO;
         }
 
         //##### Private methods
@@ -79,37 +136,37 @@
             {
                 if($userObj == null)
                 {
-                    $responseDTO->SetMessageErrorAndStackTrace("Los datos vienen vacíos", "El objeto viene nulo");
+                    $responseDTO->SetMessageErrorAndStackTrace("The data is empty", "Null object");
                     return $responseDTO;
                 }
 
                 if($userObj->Name == null)
                 {
-                    $responseDTO->SetMessageError("El campo Nombre no puede estar vacío");
+                    $responseDTO->SetMessageError("Field Name can not be empty");
                     return $responseDTO;
                 }
 
                 if($userObj->Surname == null)
                 {
-                    $responseDTO->SetMessageError("El campo Nombre no puede estar vacío");
+                    $responseDTO->SetMessageError("Field Surname can not be empty");
                     return $responseDTO;
                 }
 
                 if($userObj->Age == null)
                 {
-                    $responseDTO->SetMessageError("El campo Nombre no puede estar vacío");
+                    $responseDTO->SetMessageError("Field Age can not be empty");
                     return $responseDTO;
                 }
 
                 if($userObj->Email == null)
                 {
-                    $responseDTO->SetMessageError("El campo Nombre no puede estar vacío");
+                    $responseDTO->SetMessageError("Field Email can not be empty");
                     return $responseDTO;
                 }
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageError("Ocurrió un problema mientras se validaban los datos", $e->getMessage());
+                $responseDTO->SetMessageError("There was an error trying to validate data", $e->getMessage());
             }
 
             return $responseDTO;
@@ -131,8 +188,28 @@
             }
             catch (Exception $e)
             {
-                $responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+                $responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get content from image", $e->getMessage());
             }
+
+            return $responseDTO;
+        }
+
+        private function ValidateUserID($userObj)
+        {
+            $responseDTO = new ResponseDTO();
+
+            try
+            {
+                if($userObj->Id == null)
+                {
+                    $responseDTO->SetMessageError("User Id can not be empty");
+                    return $responseDTO;
+                }
+            }
+            catch (Exception $e)
+            {
+                $responseDTO->SetMessageError("There was an error trying to validate data", $e->getMessage());
+            }   
 
             return $responseDTO;
         }

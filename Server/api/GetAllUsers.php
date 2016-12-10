@@ -18,9 +18,8 @@
 	}
 	catch (Exception $e)
 	{
-		$responseDTO->SetMessageErrorAndStackTrace("Ocurrió un problema mientras se obtenían los datos", $e->getMessage());
+		$responseDTO->SetMessageErrorAndStackTrace("There was an error trying to get users", $e->getMessage());
 	}
 
 	echo json_encode($responseDTO);
-
 ?>

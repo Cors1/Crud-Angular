@@ -1,7 +1,7 @@
 <?php  
 	class User
 	{
-		public $Id = NULL;
+		public $Id = 0;
 		public $Name = '';
 		public $Surname = '';
 		public $Age = 0;
